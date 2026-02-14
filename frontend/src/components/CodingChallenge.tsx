@@ -13,7 +13,7 @@ interface Props {
 //    serverLang  - language string sent to the MCP server run_code tool
 //    starter     - default code shown in the editor
 //
-//  Supported runtimes on this machine: python, javascript (node), java
+//  Supported runtimes: python, javascript (node), java, csharp, cpp
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface LangConfig {
@@ -45,13 +45,43 @@ function mapTechToConfig(tech: string): LangConfig {
     return {
       monacoLang: "java",
       serverLang: "java",
-      // The MCP server auto-wraps bare code in a Main class,
-      // but we show a full template so the candidate knows the structure.
       starter:
         "public class Main {\n" +
         "    public static void main(String[] args) {\n" +
         "        // Write your solution here\n" +
         "    }\n" +
+        "}\n",
+    };
+  }
+
+  if (t.includes("c#") || t.includes("csharp") || t.includes("dotnet") || t.includes(".net")) {
+    return {
+      monacoLang: "csharp",
+      serverLang: "csharp",
+      starter:
+        "using System;\n" +
+        "using System.Collections.Generic;\n" +
+        "using System.Linq;\n\n" +
+        "class Program {\n" +
+        "    static void Main() {\n" +
+        "        // Write your solution here\n" +
+        "    }\n" +
+        "}\n",
+    };
+  }
+
+  if (t.includes("c++") || t.includes("cpp") || t.includes("cxx")) {
+    return {
+      monacoLang: "cpp",
+      serverLang: "cpp",
+      starter:
+        "#include <iostream>\n" +
+        "#include <vector>\n" +
+        "#include <string>\n" +
+        "using namespace std;\n\n" +
+        "int main() {\n" +
+        "    // Write your solution here\n" +
+        "    return 0;\n" +
         "}\n",
     };
   }
