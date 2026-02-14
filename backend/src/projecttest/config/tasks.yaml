@@ -1,0 +1,30 @@
+generate_coding_challenge:
+  description: >
+    The candidate selected the technology:
+    {selected_tech}
+
+    Candidate seniority level:
+    {experience_level}
+
+    Difficulty rules:
+    - Junior or Intermediate → EASY
+    - Senior → MEDIUM
+
+    If the chosen tech stack is a framework,
+    generate a challenge based on the core language.
+
+    Create ONE LeetCode-style problem.
+
+    Provide:
+    - Clear problem statement
+    - Function signature
+    - Constraints
+    - Example input/output
+
+  expected_output: >
+    Either:
+    - "No coding challenge for this technology."
+    OR
+    - A full coding challenge.
+
+  agent: interviewer

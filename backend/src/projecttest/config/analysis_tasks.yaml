@@ -1,0 +1,21 @@
+analyze_cv_task:
+  description: >
+    Analyze the CV text below and extract:
+    - candidate full name
+    - total years of experience
+    - experience level (Junior / Intermediate / Senior)
+    - tech stack, only if its a core language, framework or library
+
+    CV:
+    {cv_text}
+
+  expected_output: >
+    JSON with:
+    {
+      "candidate_name": string,
+      "years_of_experience": number,
+      "experience_level": string,
+      "tech_stack": []
+    }
+
+  agent: cv_analyzer
