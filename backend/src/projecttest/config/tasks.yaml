@@ -12,6 +12,12 @@ generate_coding_challenge:
 
     If the chosen tech stack is a framework,
     generate a challenge based on the core language.
+    - Example:
+        Spring = Java
+        React = JavaScript
+        Django = Python
+    If the chosen tech stack does not have a core language then no technical question.
+    Give an appropriate response.
 
     Create ONE LeetCode-style problem.
 

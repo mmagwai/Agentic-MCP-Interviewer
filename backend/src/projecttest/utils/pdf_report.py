@@ -13,8 +13,22 @@ from reportlab.pdfbase.cidfonts import UnicodeCIDFont
 from projecttest.utils.chart_generator import generate_score_chart
 
 
+# =====================================================
+# Helper → find next available filename
+# =====================================================
+def get_next_report_filename(base_dir=".", prefix="Report"):
+    i = 1
+    while True:
+        filename = os.path.join(base_dir, f"{prefix}{i}.pdf")
+        if not os.path.exists(filename):
+            return filename
+        i += 1
+
+
+# =====================================================
+# Main report generator
+# =====================================================
 def generate_report(
-    output_path,
     candidate_name,
     experience_level,
     selected_tech,
@@ -22,17 +36,36 @@ def generate_report(
     total_questions,
     coding_result,
     interview_feedback,
+    output_path=None,  
 ):
+
     """
     Generate recruiter-friendly PDF report with charts.
-    Overwrites existing file each time.
+    Creates a NEW file every time.
     """
 
     # =====================================================
-    # Ensure NEW file each time
+    # Choose NEW filename automatically
     # =====================================================
-    if os.path.exists(output_path):
-        os.remove(output_path)
+    output_path = get_next_report_filename()
+    # project root (one level above backend)
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    reports_dir = os.path.join(base_dir, "reports")
+
+    # create folder if missing
+    os.makedirs(reports_dir, exist_ok=True)
+
+    i = 1
+    while True:
+        filename = f"Report{i}.pdf"
+        path = os.path.join(reports_dir, filename)
+
+        if not os.path.exists(path):
+            output_path = path
+            break
+
+        i += 1
 
     # =====================================================
     # Font (supports many characters)
@@ -79,12 +112,12 @@ def generate_report(
         hire_recommendation = "Reject"
 
     # =====================================================
-    # Verdict color
+    # Verdict text
     # =====================================================
     if coding_verdict == "pass":
-        verdict_text = '<font><b>PASS</b></font>'
+        verdict_text = "<b>PASS</b>"
     else:
-        verdict_text = '<font><b>FAIL</b></font>'
+        verdict_text = "<b>FAIL</b>"
 
     # =====================================================
     # Chart
@@ -157,3 +190,5 @@ def generate_report(
     # cleanup temp chart
     if os.path.exists(chart_path):
         os.remove(chart_path)
+
+    print(f"Report created: {output_path}")
