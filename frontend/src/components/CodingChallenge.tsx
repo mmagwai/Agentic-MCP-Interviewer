@@ -7,15 +7,8 @@ interface Props {
   language: string;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-//  Maps the selected_tech string from the CV to:
-//    monacoLang  - language ID for Monaco editor syntax highlighting
-//    serverLang  - language string sent to the MCP server run_code tool
-//    starter     - default code shown in the editor
-//
-//  Supported runtimes: python, javascript (node), java, csharp, cpp
-// ─────────────────────────────────────────────────────────────────────────────
 
+//Maps chosen language to Monarco
 interface LangConfig {
   monacoLang: string;
   serverLang: string;

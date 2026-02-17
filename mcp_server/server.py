@@ -68,14 +68,7 @@ def _find_cpp_compiler() -> str:
 @mcp.tool()
 def run_code(language: str, code: str) -> dict:
     """
-    Execute candidate code in a sandboxed subprocess.
-
-    Args:
-        language: One of 'python', 'javascript', 'java', 'csharp', 'cpp'.
-        code:     The source code string to execute.
-
-    Returns:
-        dict with stdout, stderr, and exit_code.
+    Execute candidate code in a subprocess.
     """
     lang = language.strip().lower()
     files_to_cleanup = []

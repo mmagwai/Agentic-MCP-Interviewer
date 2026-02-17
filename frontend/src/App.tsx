@@ -78,7 +78,7 @@ function App() {
       {/* ================= HEADER ================= */}
       <div className="header">
         <div className="headerInner">
-          <img src={icon1} className="logoSmall" />
+          {/* <img src={icon1} className="logoSmall" /> */}
           <div className="brand">AI Technical Interviewer</div>
         </div>
       </div>

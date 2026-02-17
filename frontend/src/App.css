@@ -252,3 +252,10 @@ pre {
     box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
   }
 }
+::file-selector-button {
+  border: 1px solid rgb(74, 74, 74);
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: rgb(73, 90, 242);
+  color: white;
+}
