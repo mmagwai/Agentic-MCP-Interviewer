@@ -1,54 +1,116 @@
-# Projecttest Crew
+# 🧠 Agentic MCP Technical Interviewer
 
-Welcome to the Projecttest Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+An AI-powered multi-agent technical interview system built with:
 
-## Installation
+- ⚡ FastAPI (Backend API)
+- 🤖 CrewAI (Agent Orchestration)
+- 🔌 MCP Server (Tool Execution Layer)
+- 🎨 React + Vite (Frontend)
+- 🧾 Report generation (PDF feedback)
+- 📊 Code analysis & evaluation
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+This project simulates an intelligent technical interviewer using autonomous AI agents.
 
-First, if you haven't already, install uv:
+---
+
+# 🏗️ Architecture Overview
+
+The system consists of **three services**:
+
+1. **Frontend** → React app (User Interface)
+2. **Backend API** → FastAPI + CrewAI agents
+3. **MCP Server** → Tool execution & controlled operations
+
+All three services must run simultaneously in development.
+
+---
+
+# 🖥️ System Requirements
+
+### Required Software
+
+- ✅ Python **3.12.8**
+- ✅ Node.js (LTS)
+- ✅ Git
+
+Verify installation:
 
 ```bash
-pip install uv
-```
+python --version
+node -v
+npm -v
+git --version
 
-Next, navigate to your project directory and install the dependencies:
+# Installation Guide
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
-```
-### Customizing
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+**Backend Setup**
 
-- Modify `src/projecttest/config/agents.yaml` to define your agents
-- Modify `src/projecttest/config/tasks.yaml` to define your tasks
-- Modify `src/projecttest/crew.py` to add your own logic, tools and specific args
-- Modify `src/projecttest/main.py` to add custom inputs for your agents and tasks
+Ensure your version of Python is 3.13 or Lower
 
-## Running the Project
+1. Navigate to the backend folder
 
-To kickstart your crew of AI agents and begin task execution, run this from the root folder of your project:
+cd backend
 
-```bash
-$ crewai run
-```
+2. Create Virtual Environment
 
-This command initializes the projectTest Crew, assembling the agents and assigning them tasks as defined in your configuration.
+python -m venv venv
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+3. Activate it
 
-## Understanding Your Crew
+Windows: venv\Scripts\activate
+Mac/Linux: source venv/bin/activate
 
-The projectTest Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+4. Install Dependencies
 
-## Support
+pip install --upgrade pip
+pip install -r requirements.txt
 
-For support, questions, or feedback regarding the Projecttest Crew or crewAI.
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+5. Setup Environment Variables
 
-Let's create wonders together with the power and simplicity of crewAI.
+create a .env file inside backend and paste your API key and Model, e.g:
+
+OPENAI_MODEL=gpt-4o-mini
+OPENAI_API_KEY=your_openai_key
+
+6. Run the Backend:
+uvicorn api:app --reload --port 8000
+Your backend should run at:
+http://127.0.0.1:8000
+
+
+
+
+**MCP SERVER SETUP**
+
+1. Open a new terminal and go to the mcp-server directory
+
+cd mcp-server
+
+2. Create a Virtual Environment and Activate it
+
+python -m venv venv
+
+venv\Scripts\activate
+
+3. Install Requirements
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+4. Run the Server
+
+uvicorn main:app --port 8001
+
+**Backend Setup**
+
+1. Open a third terminal and install
+
+npm install
+
+2. Run The Front End
+
+npm run dev
+
+The frontend will run on:
+http://localhost:5173
