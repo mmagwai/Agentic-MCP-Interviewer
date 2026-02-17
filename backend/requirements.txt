@@ -5,3 +5,7 @@ pydantic
 python-dotenv
 openai
 httpx
+matplotlib
+reportlab
+pypdf
+crewai
